@@ -1,15 +1,18 @@
 import React from "react";
-import { Table, Thead, Tbody } from "./style";
+import { Table, Thead, Tbody, TableCell, TableHeader } from "./style";
+
 export default function ResultsTable({ investmentResults, formData }) {
+  const formatCurrencyString = (string) =>
+    `R$ ${string.toFixed(2).replace(".", ",")}`;
   return (
     <Table>
       <Thead>
         <tr>
-          <th>Year</th>
-          <th>Total Savings</th>
-          <th>Interest (Year)</th>
-          <th>Total Interest</th>
-          <th>Invested Capital</th>
+          <TableHeader>Ano</TableHeader>
+          <TableHeader>Reserva total</TableHeader>
+          <TableHeader>Redimento (Anual)</TableHeader>
+          <TableHeader>Rendimento total</TableHeader>
+          <TableHeader>Capital Investido</TableHeader>
         </tr>
       </Thead>
       <Tbody>
@@ -19,16 +22,20 @@ export default function ResultsTable({ investmentResults, formData }) {
             (result.yearlyContribution * result.year + formData.currentSavings);
           return (
             <tr>
-              <td>{result.year.toFixed(0)}</td>
-              <td>{result.savingsEndOfYear.toFixed(2).replace('.',',')}</td>
-              <td>{result.yearlyInterest.toFixed(2).replace('.',',')}</td>
-              <td>{totalInterest.toFixed(2).replace('.',',')}</td>
-              <td>
-                {(
+              <TableCell>{result.year.toFixed(0)}</TableCell>
+              <TableCell>
+                {formatCurrencyString(result.savingsEndOfYear)}
+              </TableCell>
+              <TableCell>
+                {formatCurrencyString(result.yearlyInterest)}
+              </TableCell>
+              <TableCell>{formatCurrencyString(totalInterest)}</TableCell>
+              <TableCell>
+                {formatCurrencyString(
                   result.yearlyContribution * result.year +
-                  formData.currentSavings
-                ).toFixed(2).replace('.',',')}
-              </td>
+                    formData.currentSavings
+                )}
+              </TableCell>
             </tr>
           );
         })}
