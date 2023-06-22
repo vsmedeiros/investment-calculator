@@ -19,6 +19,14 @@ export default function Form({ formData, setFormData, setInvestmentResults }) {
       [path]: event.target.value,
     }));
   };
+  const handleReset = (event, path) => {
+    setFormData(() => ({
+      currentSavings: 0,
+      yearlyContribution: 0,
+      expectedReturn: 0,
+      investmentDuration: 0,
+    }));
+  }
   return (
     <FormWrapper
       onSubmit={(event) =>
@@ -80,7 +88,7 @@ export default function Form({ formData, setFormData, setInvestmentResults }) {
         </InputWrapper>
       </InputRow>
       <ButtonsGroup className="actions">
-        <CancelButton type="reset" className="buttonAlt">
+        <CancelButton type="reset" className="buttonAlt" onClick={handleReset}>
           LIMPAR
         </CancelButton>
         <SubmitButton type="submit" className="button">

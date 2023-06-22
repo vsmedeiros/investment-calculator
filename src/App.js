@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Form from "./Form/Form";
 import Header from "./Header/Header";
 import ResultsTable from "./ResultsTable/ResultsTable";
-import { AlertText, Wrapper } from "./style";
+import { AlertText, GlobalStyle, Wrapper } from "./style";
 import Chart from "./Chart/Chart";
 function App() {
   const [formData, setFormData] = useState({
@@ -18,6 +18,7 @@ function App() {
   }, [formData]);
   return (
     <Wrapper>
+      <GlobalStyle/>
       <Header />
       <Form
         formData={formData}
