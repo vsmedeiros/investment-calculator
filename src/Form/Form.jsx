@@ -1,55 +1,92 @@
 import React from "react";
 import { calculateHandler } from "../utils/calculateHandler";
-import { SubmitButton, FormWrapper, Input, InputWrapper, Label, CancelButton } from "./style";
+import {
+  SubmitButton,
+  FormWrapper,
+  Input,
+  InputWrapper,
+  Label,
+  CancelButton,
+  ButtonsGroup,
+  InputRow,
+} from "./style";
 import { preventNotNumberCharacters } from "../utils/preventNotNumberCharacters";
 
-export default function Form() {
+export default function Form({ formData, setFormData, setInvestmentResults }) {
+  const handleChange = (event, path) => {
+    setFormData((prev) => ({
+      ...prev,
+      [path]: event.target.value,
+    }));
+  };
   return (
-    <FormWrapper onSubmit={calculateHandler}>
-      <InputWrapper>
-        <p>
-          <Label htmlFor="current-savings">Poupança atual (R$)</Label>
+    <FormWrapper
+      onSubmit={(event) =>
+        setInvestmentResults(calculateHandler(event, formData))
+      }
+    >
+      <InputRow>
+        <InputWrapper>
+          <Label htmlFor="currentSavings">Poupança atual (R$)</Label>
           <Input
             onKeyDown={(evt) => preventNotNumberCharacters(evt)}
             type="number"
-            id="current-savings"
+            required
+            id="currentSavings"
+            min='1'
+            value={formData.currentSavings}
+            onChange={(event) => handleChange(event, "currentSavings")}
           />
-        </p>
-        <p>
-          <Label htmlFor="yearly-contribution">Aporte Anual (R$)</Label>
+        </InputWrapper>
+        <InputWrapper>
+          <Label htmlFor="yearlyContribution">Aporte Anual (R$)</Label>
           <Input
-            onKeyDown={(evt) => preventNotNumberCharacters(evt)}
+            onKeyDown={(event) => preventNotNumberCharacters(event)}
             type="number"
-            id="yearly-contribution"
+            min='1'
+            required
+            id="yearlyContribution"
+            value={formData.yearlyContribution}
+            onChange={(event) => handleChange(event, "yearlyContribution")}
           />
-        </p>
-      </InputWrapper>
-      <InputWrapper>
-        <p>
-          <Label htmlFor="expected-return">Juros esperados (% por ano)</Label>
+        </InputWrapper>
+      </InputRow>
+      <InputRow>
+        <InputWrapper>
+          <Label htmlFor="expectedReturn">Juros esperados (% por ano)</Label>
           <Input
-            onKeyDown={(evt) => preventNotNumberCharacters(evt)}
+            onKeyDown={(event) => preventNotNumberCharacters(event)}
             type="number"
-            id="expected-return"
+            min='1'
+            required
+            id="expectedReturn"
+            value={formData.expectedReturn}
+            onChange={(event) => handleChange(event, "expectedReturn")}
           />
-        </p>
-        <p>
-          <Label htmlFor="duration">Duração do investimento (anos)</Label>
+        </InputWrapper>
+        <InputWrapper>
+          <Label htmlFor="investmentDuration">
+            Duração do investimento (anos)
+          </Label>
           <Input
-            onKeyDown={(evt) => preventNotNumberCharacters(evt)}
+            onKeyDown={(event) => preventNotNumberCharacters(event)}
             type="number"
-            id="duration"
+            min='1'
+            required
+            id="investmentDuration"
+            value={formData.investmentDuration}
+            onChange={(event) => handleChange(event, "investmentDuration")}
           />
-        </p>
-      </InputWrapper>
-      <p className="actions">
+        </InputWrapper>
+      </InputRow>
+      <ButtonsGroup className="actions">
         <CancelButton type="reset" className="buttonAlt">
           LIMPAR
         </CancelButton>
         <SubmitButton type="submit" className="button">
           CALCULAR
         </SubmitButton>
-      </p>
+      </ButtonsGroup>
     </FormWrapper>
   );
 }

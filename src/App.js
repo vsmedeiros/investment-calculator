@@ -1,38 +1,35 @@
+import { useState } from "react";
 import Form from "./Form/Form";
 import Header from "./Header/Header";
-
+import ResultsTable from "./ResultsTable/ResultsTable";
+import { AlertText, Wrapper } from "./style";
 function App() {
-  
+  const [formData, setFormData] = useState({
+    currentSavings: 800,
+    yearlyContribution: 400,
+    expectedReturn: 10,
+    investmentDuration: 10,
+  });
 
+  const [investmentResults, setInvestmentResults] = useState(null);
+  console.log(investmentResults);
   return (
-    <div>
+    <Wrapper>
       <Header />
-      <Form/>
+      <Form
+        formData={formData}
+        setFormData={setFormData}
+        setInvestmentResults={setInvestmentResults}
+      />
 
-      {/* Todo: Show below table conditionally (only once result data is available) */}
-      {/* Show fallback text if no data is available */}
-
-      <table className="result">
-        <thead>
-          <tr>
-            <th>Year</th>
-            <th>Total Savings</th>
-            <th>Interest (Year)</th>
-            <th>Total Interest</th>
-            <th>Invested Capital</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>YEAR NUMBER</td>
-            <td>TOTAL SAVINGS END OF YEAR</td>
-            <td>INTEREST GAINED IN YEAR</td>
-            <td>TOTAL INTEREST GAINED</td>
-            <td>TOTAL INVESTED CAPITAL</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+      {investmentResults ? (
+        <ResultsTable investmentResults={investmentResults} formData={formData}/>
+      ) : (
+        <AlertText >
+          Por favor. Insira os dados do investimento.
+        </AlertText>
+      )}
+    </Wrapper>
   );
 }
 

@@ -1,28 +1,26 @@
-export const calculateHandler = (event) => {
-    event.preventDefault();
-    console.log("aqui");
-    // Should be triggered when form is submitted
-    // You might not directly want to bind it to the submit event on the form though...
+export const calculateHandler = (event, formData) => {
+  event.preventDefault();
 
-    const yearlyData = []; // per-year results
+  const yearlyData = []; // per-year results
 
-    // let currentSavings = +userInput['current-savings']; // feel free to change the shape of this input object!
-    // const yearlyContribution = +userInput['yearly-contribution']; // as mentioned: feel free to change the shape...
-    // const expectedReturn = +userInput['expected-return'] / 100;
-    // const duration = +userInput['duration'];
+  let currentSavings = Number(formData.currentSavings);
 
-    // The below code calculates yearly results (total savings, interest etc)
-    // for (let i = 0; i < duration; i++) {
-    //   const yearlyInterest = currentSavings * expectedReturn;
-    //   currentSavings += yearlyInterest + yearlyContribution;
-    //   yearlyData.push({
-    //     // feel free to change the shape of the data pushed to the array!
-    //     year: i + 1,
-    //     yearlyInterest: yearlyInterest,
-    //     savingsEndOfYear: currentSavings,
-    //     yearlyContribution: yearlyContribution,
-    // });
-    // }
+  const yearlyContribution = Number(formData.yearlyContribution);
 
-    // do something with yearlyData ...
-  };
+  const expectedReturn = Number(formData.expectedReturn) / 100;
+
+  const duration = Number(formData.investmentDuration);
+
+  for (let i = 0; i < duration; i++) {
+    const yearlyInterest = currentSavings * expectedReturn;
+    currentSavings += yearlyInterest + yearlyContribution;
+    yearlyData.push({
+      year: i + 1,
+      yearlyInterest: yearlyInterest,
+      savingsEndOfYear: currentSavings,
+      yearlyContribution: yearlyContribution,
+    });
+  }
+
+  return yearlyData;
+};

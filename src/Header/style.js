@@ -5,7 +5,7 @@ export const HeaderWrapper = styled.header`
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    padding-top: 5rem;
+    padding-top: 2rem;
     font-family: Arial,sans-serif;
 `
 export const Logo = styled.img`
