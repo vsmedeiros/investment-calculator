@@ -7,7 +7,7 @@ Esta aplicação web tem o intuito de calcular um investimento baseado na reserv
 
 :heavy_check_mark: Cálculo do investimento total;
 
-:heavy_check_mark: Gráfico com a evolução do investimento;
+:heavy_check_mark: Gráfico com a evolução do investimento.
 
 
 # :technologist: Tecnologias
