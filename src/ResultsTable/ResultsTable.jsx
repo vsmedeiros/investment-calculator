@@ -2,8 +2,9 @@ import React from "react";
 import { Table, Thead, Tbody, TableCell, TableHeader } from "./style";
 
 export default function ResultsTable({ investmentResults, formData }) {
+  console.log(investmentResults);
   const formatCurrencyString = (string) =>
-    `R$ ${string.toFixed(2).replace(".", ",")}`;
+    `R$ ${Number(string).toFixed(2).replace(".", ",").replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
   return (
     <Table>
       <Thead>
@@ -16,13 +17,13 @@ export default function ResultsTable({ investmentResults, formData }) {
         </tr>
       </Thead>
       <Tbody>
-        {investmentResults.map((result) => {
+        {investmentResults.map((result,index) => {
           const totalInterest =
             result.savingsEndOfYear -
-            (result.yearlyContribution * result.year + formData.currentSavings);
+            (result.yearlyContribution * result.year + Number(formData.currentSavings));
           return (
-            <tr>
-              <TableCell>{result.year.toFixed(0)}</TableCell>
+            <tr key={index}>
+              <TableCell>{result.year}</TableCell>
               <TableCell>
                 {formatCurrencyString(result.savingsEndOfYear)}
               </TableCell>
@@ -33,7 +34,7 @@ export default function ResultsTable({ investmentResults, formData }) {
               <TableCell>
                 {formatCurrencyString(
                   result.yearlyContribution * result.year +
-                    formData.currentSavings
+                    Number(formData.currentSavings)
                 )}
               </TableCell>
             </tr>

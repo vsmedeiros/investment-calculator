@@ -4,13 +4,13 @@ export const Table = styled.table`
   margin: 2rem 0;
   width: 47.5rem;
   border-radius: 0.5rem;
-  outline: #ffffff solid;
+  outline: #ffffff solid 1px;
   border-collapse: collapse;
   text-align: center;
 `;
 export const Thead = styled.thead`
   font-size: 1rem;
-  color: #83e6c0;
+  color: #5fdd63;
   border-bottom: 1px solid #ffffff;
 `;
 export const Tbody = styled.tbody`

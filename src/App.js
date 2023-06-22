@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Form from "./Form/Form";
 import Header from "./Header/Header";
 import ResultsTable from "./ResultsTable/ResultsTable";
@@ -13,7 +13,9 @@ function App() {
   });
 
   const [investmentResults, setInvestmentResults] = useState(null);
-  console.log(investmentResults);
+  useEffect(() => {
+    setInvestmentResults(null);
+  }, [formData]);
   return (
     <Wrapper>
       <Header />
@@ -32,7 +34,7 @@ function App() {
           />
         </div>
       ) : (
-        <AlertText>Por favor. Insira os dados do investimento.</AlertText>
+        <AlertText>Por favor. Insira os dados do investimento e calcule novamente.</AlertText>
       )}
     </Wrapper>
   );

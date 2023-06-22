@@ -23,17 +23,49 @@ ChartJS.register(
 
 export default function Chart({ investmentResults }) {
   const options = {
+    scales: {
+      
+      x: {
+        grid: {
+          color: "rgba(255, 255, 255,.1)",
+        },
+        ticks: { font: { size: 16 }, color: "white" },
+        title: {
+          display: true,
+          color: "#ffffff",
+          text: "Anos",
+          font: { size: 16 },
+        },
+      },
+      y: {
+        grid: {
+          color: "rgba(255, 255, 255,.1)",
+        },
+        ticks: { font: { size: 16 }, color: "white" },
+        title: {
+          display: true,
+          color: "#ffffff",
+          text: "Investimento total",
+          font: { size: 16 },
+        },
+      },
+    },
     responsive: true,
+    color: "white",
     plugins: {
       legend: {
         position: "top",
       },
+
       title: {
         display: true,
         text: "Progressão do investimento",
+        color: "white",
+        font: { size: 16 },
       },
     },
   };
+
   const labels = investmentResults?.map((result) => result.year);
   const data = {
     labels,
@@ -48,7 +80,7 @@ export default function Chart({ investmentResults }) {
   };
   return (
     <ChartWrapper>
-      <Line options={options} data={data}  />
+      <Line options={options} data={data} />
     </ChartWrapper>
   );
 }
