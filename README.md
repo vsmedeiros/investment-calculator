@@ -23,7 +23,7 @@ Instale as dependências:
 yarn
 ```
 
-Executa:
+Execute:
 ```
 yarn start
 ```
