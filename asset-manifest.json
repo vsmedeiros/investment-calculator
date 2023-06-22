@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/vsmedeiros/investment-calculator/static/css/main.07e4d0b5.css",
+    "main.js": "/vsmedeiros/investment-calculator/static/js/main.dae90ceb.js",
+    "static/media/investment-calculator-logo.png": "/vsmedeiros/investment-calculator/static/media/investment-calculator-logo.91b096014f769c75681f.png",
+    "index.html": "/vsmedeiros/investment-calculator/index.html",
+    "main.07e4d0b5.css.map": "/vsmedeiros/investment-calculator/static/css/main.07e4d0b5.css.map",
+    "main.dae90ceb.js.map": "/vsmedeiros/investment-calculator/static/js/main.dae90ceb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.07e4d0b5.css",
+    "static/js/main.dae90ceb.js"
+  ]
+}
